@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+    <style>
+        body {
+            background-color: lightblue;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            font-family: verdana;
+        }
+
+        p {
+            font-family: verdana;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
 <body>
-
-    Now: <b id="whatsnow"></b><br> 
-    Next:<b id="whatsnext"></b>
-
+    <h1>&piv; Heckfire &piv;</h1>
+    <p>
+        Now: <b id="whatsnow"></b><br> 
+        Next:<b id="whatsnext"></b>
+    </p>
     <script>
         //The date I know to be when Might was, based on GMT+1
         var MightDate = new Date("Mar 5, 2018 17:00:00 GMT+0100");
@@ -15,10 +35,12 @@
         var hours = Math.floor((timediff % (86400000)) / (3600000));
         var sequence = Math.floor(hours % 11);
         var upnext = sequence + 1
-        if (upnext = 11) {
-    		upnext = 0
-		}
-        var quests = ["Might", "Resource Gathering", "Troop", "Monster", "Construction", "Troops", "Monster", "Resource Gathering", "Research", "Troops", "Monster"];
+        if (upnext > 10) {
+            upnext = 0
+        }
+        var quests = ["Might", "Resource Gathering", "Troop", "Monster", "Construction", "Troops", "Monster",
+            "Resource Gathering", "Research", "Troops", "Monster"
+        ];
         document.getElementById("whatsnow").innerHTML = quests[sequence];
         document.getElementById("whatsnext").innerHTML = quests[upnext];
     </script>
