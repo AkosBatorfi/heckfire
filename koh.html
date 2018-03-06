@@ -14,9 +14,13 @@
         var timediff = now - MightDate;
         var hours = Math.floor((timediff % (86400000)) / (3600000));
         var sequence = Math.floor(hours % 11);
+        var upnext = sequence + 1
+        if (upnext = 11) {
+    		upnext = 0
+		}
         var quests = ["Might", "Resource Gathering", "Troop", "Monster", "Construction", "Troops", "Monster", "Resource Gathering", "Research", "Troops", "Monster"];
         document.getElementById("whatsnow").innerHTML = quests[sequence];
-        document.getElementById("whatsnext").innerHTML = quests[sequence + 1];
+        document.getElementById("whatsnext").innerHTML = quests[upnext];
     </script>
 
 </body>
