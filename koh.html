@@ -27,8 +27,8 @@
 
     <script>
         //The list of quests
-        var quests = ["Might", "Resource Gathering", "Troop", "Monster", "Construction", "Troops", "Monster", "Resource Gathering", "Research", "Troops", "Monster"];
-        var biomes = ["Swamp", "Grasslands","BadLands"];
+        var quests = ["Might", "Resource Gathering", "Troops", "Monster Slaying", "Construction", "Troops", "Monster Slaying", "Resource Gathering", "Research", "Troops", "Monster Slaying"];
+        var biomes = ["Grasslands","BadLands","Swamp"];
         //The date I know to be when Might was, based on GMT+1
         var MightDate = new Date("Mar 5, 2018 17:00:00 GMT+0100");
         //The date I know to be when Swamp was, based on GMT+1
@@ -49,15 +49,13 @@
                 text = "<ul>";
                 text += "<li> Current:" + quests[sequence] + " on " + biomes[bsequence] + "</li>";
                 for (i = 1; i < 23; i++) {
-                    hoursadded = hours + i;
-                    var sequence = Math.floor(hoursadded % 11);
+                    var sequence = Math.floor((hours + i) % 11);
                     text += "<li>" + quests[sequence] + "</li>";
                 }
                 text += "</ul>";
                 document.getElementById("events").innerHTML = text;
-                console.log("a");
         }
-        
+        listing();
         setInterval(listing, 1000);
     </script>
 
