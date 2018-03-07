@@ -28,23 +28,37 @@
     <script>
         //The list of quests
         var quests = ["Might", "Resource Gathering", "Troop", "Monster", "Construction", "Troops", "Monster", "Resource Gathering", "Research", "Troops", "Monster"];
+        var biomes = ["Swamp", "Grasslands","BadLands"];
         //The date I know to be when Might was, based on GMT+1
         var MightDate = new Date("Mar 5, 2018 17:00:00 GMT+0100");
-        //The date from the browser
-        var now = new Date().getTime();
-        var timediff = now - MightDate;
-        var hours = Math.floor(timediff / (1000 * 60 * 60));
-        var sequence = Math.floor(hours % 11);
-
-        text = "<ul>";
-        text += "<li> Current:" + quests[sequence] + "</li>";
-        for (i = 1; i < 23; i++) {
-            hoursadded = hours + i;
-            var sequence = Math.floor(hoursadded % 11);
-            text += "<li>" + quests[sequence] + "</li>";
+        //The date I know to be when Swamp was, based on GMT+1
+        var SwampDate = new Date("Mar 6, 2018 22:00:00 GMT+0100");
+        
+        function listing() {
+                //The date from the browser
+                var now = new Date().getTime();
+                var questtimediff = now - MightDate;
+                var biometimediff = now - SwampDate;
+                //Calculate the amount of hours the time difference is for quest and biome
+                var hours = Math.floor(questtimediff / (1000 * 60 * 60));
+                var bhours = Math.floor(biometimediff / (1000 * 60 * 60));
+                //Calculate how many times we need to cycle through the quests loop
+                var sequence = Math.floor(hours % 11);
+                var bsequence = Math.floor(bhours % 3);
+                //console.log(bsequence);
+                text = "<ul>";
+                text += "<li> Current:" + quests[sequence] + " on " + biomes[bsequence] + "</li>";
+                for (i = 1; i < 23; i++) {
+                    hoursadded = hours + i;
+                    var sequence = Math.floor(hoursadded % 11);
+                    text += "<li>" + quests[sequence] + "</li>";
+                }
+                text += "</ul>";
+                document.getElementById("events").innerHTML = text;
+                console.log("a");
         }
-        text += "</ul>";
-        document.getElementById("events").innerHTML = text;
+        
+        setInterval(listing, 1000);
     </script>
 
 </body>
