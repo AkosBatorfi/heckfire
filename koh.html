@@ -22,25 +22,29 @@
 
 <body>
     <h1>&piv; Heckfire &piv;</h1>
-    <p>
-        Now: <b id="whatsnow"></b><br> 
-        Next:<b id="whatsnext"></b>
-    </p>
+
+    <p id="events"></p>
+
     <script>
+        //The list of quests
+        var quests = ["Might", "Resource Gathering", "Troop", "Monster", "Construction", "Troops", "Monster", "Resource Gathering", "Research", "Troops", "Monster"];
         //The date I know to be when Might was, based on GMT+1
         var MightDate = new Date("Mar 5, 2018 17:00:00 GMT+0100");
         //The date from the browser
         var now = new Date().getTime();
         var timediff = now - MightDate;
-        var hours = Math.floor(timediff/(1000*60*60));
+        var hours = Math.floor(timediff / (1000 * 60 * 60));
         var sequence = Math.floor(hours % 11);
-        var upnext = sequence + 1
-        if (upnext > 10) {
-            upnext = 0
+
+        text = "<ul>";
+        text += "<li> Current:" + quests[sequence] + "</li>";
+        for (i = 1; i < 23; i++) {
+            hoursadded = hours + i;
+            var sequence = Math.floor(hoursadded % 11);
+            text += "<li>" + quests[sequence] + "</li>";
         }
-        var quests = ["Might", "Resource Gathering", "Troop", "Monster", "Construction", "Troops", "Monster","Resource Gathering", "Research", "Troops", "Monster"];
-        document.getElementById("whatsnow").innerHTML = quests[sequence];
-        document.getElementById("whatsnext").innerHTML = quests[upnext];
+        text += "</ul>";
+        document.getElementById("events").innerHTML = text;
     </script>
 
 </body>
