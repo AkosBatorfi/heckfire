@@ -8,42 +8,49 @@
             font-family: "Open Sans", sans-serif;
             color: #4e5359;
             background-image: url("kingdom3.jpg");
-            background-repeat: no-repeat;
+            background-repeat: repeat;
+            background-size: auto;
             background-attachment: fixed;
         }
 
         h1 {
             color: white;
             text-align: center;
-            font-family: verdana;
         }
 
         h2 {
             color: darkblue;
             text-align: center;
-            font-family: verdana;
         }
 
         h3 {
             color: darkblue;
             text-align: center;
-            font-family: verdana;
+            position: relative;
+            height: 50px;
+            line-height: 50px;
+            background-color: rgba(78, 83, 89, 0.8);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: #f3cc60;
+            white-space: nowrap;
+            border-bottom: 2px solid hsl(210, 7%, 36%);
+            text-overflow: ellipsis;
         }
 
         p {
-            font-family: verdana;
-            font-size: 20px;
+            font-size: 40px;
         }
 
         table {
             position: relative;
-            height: 30px;
-            line-height: 30px;
-            padding: 0 16px 0 16px;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 50px 0 50px;
             background-color: rgba(78, 83, 89, 0.8);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            color: #ffffff;
+            color: #f3cc60;
             white-space: nowrap;
             border-bottom: 1px solid hsl(210, 7%, 36%);
             text-overflow: ellipsis;
@@ -51,13 +58,12 @@
 
         td {
             text-align: right;
-            border: 1px solid rgb(44, 43, 43);
-        }
+        } 
     </style>
 </head>
 
 <body>
-    <h1>&piv; Heckfire v0.3 &piv;</h1>
+    <h1><img src="logo.png" alt="Kingdoms of Heckfire"> </h1>
 
     <p id="events"></p>
 
@@ -105,7 +111,7 @@
             text = "<h3>" + biomes[bsequence] + " " + addZero(remaininghours) + ":" + addZero(remainingmin) + ":" + addZero(remainingsec) + "</h3>";
             text += "<h3>" + "Next Biome: " + biomes[bsequencetomorrow] + "</h3>";
             text += "<center><table>";
-            text += "<tr><td>" + quests[sequence] + "</td><td>" + addZero(remainingmin) + ":" + addZero(remainingsec) + "</td></tr>";
+            text += "<tr><td>Currently on: <b>" + quests[sequence] + "</b></td><td>" + addZero(remainingmin) + ":" + addZero(remainingsec) + " left</td></tr>";
             for (i = 1; i < 23; i++) {
                 var sequence = Math.floor((hours + i) % 11);
                 var nexthour = (d.addHours(1)).getHours();
