@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-size: 100%;
+            font-family: "Open Sans", sans-serif;
+            color: #4e5359;
+            background-image: url("kingdom3.jpg");
+            background-repeat: repeat;
+            background-size: auto;
+            background-attachment: fixed;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+        }
+
+        h2 {
+            color: darkblue;
+            text-align: center;
+        }
+
+        h3 {
+            color: darkblue;
+            text-align: center;
+            position: relative;
+            height: 50px;
+            line-height: 50px;
+            background-color: rgba(78, 83, 89, 0.8);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: #f3cc60;
+            white-space: nowrap;
+            border-bottom: 2px solid hsl(210, 7%, 36%);
+            text-overflow: ellipsis;
+        }
+
+        p {
+            font-size: 40px;
+        }
+
+        table {
+            position: relative;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 50px 0 50px;
+            background-color: rgba(78, 83, 89, 0.8);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: #f3cc60;
+            white-space: nowrap;
+            border-bottom: 1px solid hsl(210, 7%, 36%);
+            text-overflow: ellipsis;
+        }
+
+        td {
+            text-align: right;
+        } 
+    </style>
+</head>
+
+<body>
+    <h1><img src="logo.png" alt="Kingdoms of Heckfire"> </h1>
+
+    <p id="events"></p>
+
+    <script>
+        //The list of quests and biomes
+        var quests = ["Might", "Resource Gathering", "Troop Training", "Monster Slaying", "Construction", "Troop Training", "Monster Slaying", "Resource Gathering", "Research", "Troop Training", "Monster Slaying"];
+        var biomes = ["Swamp", "Grasslands", "BadLands"];
+        //The date I know to be when Might was, based on GMT+1
+        var MightDate = new Date("Mar 5, 2018 17:00:00 GMT+0100");
+        //The date I know to be when Swamp was, based on GMT+1
+        var SwampDate = new Date("Mar 6, 2018 22:00:00 GMT+0100");
+
+        function addZero(i) {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+
+
+        Date.prototype.addHours = function (h) {
+            this.setHours(this.getHours() + h);
+            return this;
+        }
+
+        function listing() {
+            //The date from the browser
+            var now = new Date().getTime();
+            var d = new Date();
+            var remainingmin = 59 - d.getMinutes();
+            var remainingsec = 59 - d.getSeconds();
+            var remaininghours = 22 - (d.getHours() + 1);
+            var questtimediff = now - MightDate;
+            var biometimediff = now - SwampDate;
+            //Calculate the amount of hours the time difference is for quest and biome
+            var hours = Math.floor(questtimediff / (1000 * 60 * 60));
+            var bhours = Math.floor(biometimediff / (1000 * 60 * 60));
+            var remaininghours = 23 - (bhours % 24);
+            var bdays = Math.floor(biometimediff / (1000 * 60 * 60 * 24));
+            //Calculate how many times we need to cycle through the quests loop
+            var sequence = Math.floor(hours % 11);
+            var bsequence = Math.floor(bdays % 3);
+            var bsequencetomorrow = Math.floor((bdays + 1) % 3);
+            //Put all of it together
+            text = "<h3>" + biomes[bsequence] + " " + addZero(remaininghours) + ":" + addZero(remainingmin) + ":" + addZero(remainingsec) + "</h3>";
+            text += "<h3>" + "Next Biome: " + biomes[bsequencetomorrow] + "</h3>";
+            text += "<center><table>";
+            text += "<tr><td>Currently on: <b>" + quests[sequence] + "</b></td><td>" + addZero(remainingmin) + ":" + addZero(remainingsec) + " left</td></tr>";
+            for (i = 1; i < 23; i++) {
+                var sequence = Math.floor((hours + i) % 11);
+                var nexthour = (d.addHours(1)).getHours();
+                text += "<tr><td>" + quests[sequence] + "</td><td>" + addZero(nexthour) + ":00" + "</td></tr>";
+            }
+            text += "</table></center>";
+            //insert into html
+            document.getElementById("events").innerHTML = text;
+        }
+        listing();
+        setInterval(listing, 1000);
+    </script>
+
+</body>
+
+</html>
