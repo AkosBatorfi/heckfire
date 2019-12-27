@@ -56,7 +56,7 @@
         }
 
         td {
-            text-align: right;
+            text-align: left;
         } 
     </style>
 </head>
@@ -110,11 +110,11 @@
             text = "<h3>" + biomes[bsequence] + " until: " + addZero(remaininghours) + ":" + addZero(remainingmin) + ":" + addZero(remainingsec) + "</h3>";
             text += "<h3>" + "Next Biome: " + biomes[bsequencetomorrow] + "</h3>";
             text += "<center><table>";
-            text += "<tr><td>Currently on: <b>" + quests[sequence] + "</b></td><td>" + addZero(remainingmin) + ":" + addZero(remainingsec) + " left</td></tr>";
+            text += "<tr><td><b>Currently on: </td><td>" + quests[sequence] + "</td><td>" + addZero(remainingmin) + ":" + addZero(remainingsec) + " left</b></td></tr>";
             for (i = 1; i < 23; i++) {
                 var sequence = Math.floor((hours + i) % 13);
                 var nexthour = (d.addHours(1)).getHours();
-                text += "<tr><td>" + quests[sequence] + "</td><td>" + addZero(nexthour) + ":00" + "</td></tr>";
+                text += "<tr><td>At: "+ addZero(nexthour) + ":00 </td><td>" + quests[sequence] + "</td><td> in:  " + addZero(i-1) + ":" + addZero(remainingmin) + ":" + addZero(remainingsec) + "</td></tr>";
             }
             text += "</table></center>";
             //insert into html
