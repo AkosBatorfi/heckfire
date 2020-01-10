@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-size: 100%;
+            font-family: "Open Sans", sans-serif;
+            color: #4e5359;
+            background-image: url("kingdom3.jpg");
+            background-repeat: repeat;
+            background-size: auto;
+            background-attachment: fixed;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+        }
+
+        h2 {
+            color: darkblue;
+            text-align: center;
+        }
+
+        h3 {
+            text-align: center;
+            position: relative;
+            height: 50px;
+            line-height: 50px;
+            background-color: rgba(78, 83, 89, 0.8);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: #f3cc60;
+            white-space: nowrap;
+            border-bottom: 2px solid hsl(210, 7%, 36%);
+            text-overflow: ellipsis;
+        }
+
+        p {
+            font-size: 40px;
+        }
+
+        table {
+            position: relative;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 50px 0 50px;
+            background-color: rgba(78, 83, 89, 0.8);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: #f3cc60;
+            white-space: nowrap;
+            border-bottom: 1px solid hsl(210, 7%, 36%);
+            text-overflow: ellipsis;
+        }
+
+        td {
+            text-align: left;
+        } 
+    </style>
+</head>
+
+
+<body>
+<h1>Allies Magic Number Finder</h1>
+
+<h2>Type ally range:</h2>
+<center>
+    <form id="myForm">
+        <input type="number" value="512000" name="bamount"><br>
+        <input type="reset">
+      </form> 
+      
+      <button onclick="myFunction()">Calculate</button>
+    </center>      
+
+<p id="output"></p>
+
+<script>
+function myFunction() {
+var beginnumber = 100;
+var selectedRange = parseInt(document.getElementById("myForm").elements[0].value);
+var tenpctbigger = selectedRange+selectedRange/5;
+var tenpctsmaller = selectedRange-selectedRange/5;
+text = "<center><table>";
+            for (i = 1; i < 350; i++) {           	
+                var increase = beginnumber*(5/100);
+                beginnumber = beginnumber+Math.floor(increase); 
+                //if beginnumber is 20% bigger than or equal to selectedrange and beginnumber is 20% lower than or equal to selectedrange 
+                if (beginnumber > tenpctsmaller && beginnumber < tenpctbigger){
+                    text += "<tr><td>"+ beginnumber +"</td></tr>";
+                }
+            }
+text += "</table></center>";
+
+  document.getElementById("output").innerHTML = text;
+}
+</script>
+
+<center><a href="index.html">Back to schedule</a></center>
+</body>
+</html>
