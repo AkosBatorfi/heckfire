@@ -67,7 +67,7 @@
 <h2>Type ally range:</h2>
 <center>
     <form id="myForm">
-        <input type="number" value="512000" name="bamount" style="font-size:50pt;"><br>
+        <input type="number" value="1" name="bamount" style="font-size:50pt;"><br>
         <input type="Reset" style="font-size:50pt;">
       </form> 
       
@@ -79,7 +79,7 @@
 <script>
 function myFunction() {
 var beginnumber = 100;
-var selectedRange = parseInt(document.getElementById("myForm").elements[0].value);
+var selectedRange = parseInt(document.getElementById("myForm").elements[0].value)*1000000;
 var tenpctbigger = selectedRange+selectedRange/5;
 var tenpctsmaller = selectedRange-selectedRange/5;
 text = "<center><table>";
