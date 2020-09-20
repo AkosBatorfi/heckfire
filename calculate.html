@@ -58,6 +58,8 @@
             text-align: left;
         } 
     </style>
+	<link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css" media="all">
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 </head>
 
 
@@ -88,7 +90,7 @@ text = "<center><table>";
                 beginnumber = beginnumber+Math.floor(increase); 
                 //if beginnumber is 20% bigger than or equal to selectedrange and beginnumber is 20% lower than or equal to selectedrange 
                 if (beginnumber > tenpctsmaller && beginnumber < tenpctbigger){
-                    text += "<tr><td>"+ beginnumber +"</td></tr>";
+                    text += "<tr><td><div class=\"btn\" data-clipboard-text=\""+beginnumber+"\">" + beginnumber +" <i class=\"fas fa-copy\"></i></td></tr>";
                 }
             }
 text += "</table></center>";
@@ -99,4 +101,7 @@ text += "</table></center>";
 
 <center><h2><a href="index.html">Back to schedule</a></h2></center>
 </body>
+<script>
+    new ClipboardJS('.btn');
+</script>
 </html>
